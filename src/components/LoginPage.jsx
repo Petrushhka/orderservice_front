@@ -23,7 +23,7 @@ const LoginPage = () => {
 
   const doLogin = async () => {
     const loginData = {
-      eamil,
+      email,
       password,
     };
 

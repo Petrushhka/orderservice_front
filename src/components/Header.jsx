@@ -10,7 +10,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/Usercontext';
 const Header = () => {
-  // 로그인 상태에 따라 메뉴를 다르게 제공하고 싶다 -> Context에서 뽑아오면 되겠구나@
+  // 로그인 상태에 따라 메뉴를 다르게 제공하고 싶다 -> Context에서 뽑아오면 되겠구나
   const { isLoggedIn, onLogout, userRole } = useContext(AuthContext);
 
   const navigate = useNavigate();
