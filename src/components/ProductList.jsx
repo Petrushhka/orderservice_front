@@ -17,6 +17,8 @@ import {
 } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../context/Usercontext';
+import CartContext from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const ProductList = ({ pageTitle }) => {
   const [searchType, setSearchType] = useState('optional');
@@ -26,6 +28,9 @@ const ProductList = ({ pageTitle }) => {
 
   const { userRole } = useContext(AuthContext);
   const isAdmin = userRole === 'ADMIN';
+
+  const { addCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadProduct();
@@ -54,7 +59,7 @@ const ProductList = ({ pageTitle }) => {
       return {
         id: product.id,
         name: product.name,
-        quatity: product.quantity,
+        quantity: product.quantity,
       };
     });
 
@@ -66,14 +71,18 @@ const ProductList = ({ pageTitle }) => {
     }
 
     for (let p of finalSelected) {
-      if (!p.quanntity) {
-        alert('수량이 0개인 상품은 담을 수 없습니다.');
+      if (!p.quantity) {
+        alert('수량이 0개인 상품은 담을 수 없습니다.' + p.quantity);
         return;
       }
     }
     if (confirm('상품을 장바구니에 추가하시겠습니까?')) {
-      // 카트로 상품을 보내주자.
+      // 카트로 상품을 보내주자. (addCart에는 상품을 하나씩 보내세요.)
+      finalSelected.forEach((product) => addCart(product));
       alert('선택한 상품이 장바구니에 추가되었습니다.');
+    }
+    if (confirm('장바구니화면으로돌아갈까요?')) {
+      navigate('/order/cart');
     }
   };
 
