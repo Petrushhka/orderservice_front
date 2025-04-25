@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogin: () => {},
@@ -9,7 +10,7 @@ const AuthContext = React.createContext({
 // 위에서 생성한 Context를 제공하는 Provider 선언.
 //이 provider를 통해 자식 컴포넌트(Consumer)에게 인증 상태와 관련된 값, 함수를 전달할 수 있음.
 
-export const AuthContextProvider = (props) => {
+export const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState('');
 
@@ -48,7 +49,7 @@ export const AuthContextProvider = (props) => {
         userRole,
       }}
     >
-      {props.children}
+      {children}
     </AuthContext.Provider>
   );
 };
