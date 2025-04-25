@@ -10,9 +10,10 @@ import {
 import React, { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import addImage from '../assets/image-add.png';
-import { API_BASE_URL } from '../configs/host-config';
+import { API_BASE_URL, PROD } from '../configs/host-config';
 import AuthContext from '../context/Usercontext';
-import { handleAxiosError } from '../configs/HandleAxiosError';
+import { handleAxiosError } from '../configs/handleAxiosError';
+import axiosInstance from '../configs/axios-config'; // 실제 경로에 따라 조정
 
 const ProductCreate = () => {
   const [name, setName] = useState('');
@@ -35,16 +36,20 @@ const ProductCreate = () => {
       registsData.append('category', category);
       registsData.append('price', price);
       registsData.append('stockQuantity', stockQuantity);
-      registsData.append('productIamge', productIamge);
+      registsData.append('productImage', productImage);
 
       //axiosInstance의 기본 컨텐트 타입은 JSON -> JSON 보낼 때는 개꿀
       // 지금 우리가 보내야 되는 컨텐트는 FormData -> multipart/form-data 직접 명시
+
+      const url = `${API_BASE_URL}/create`;
+      console.log('요청 URL:', url);
+
       await axiosInstance.post(
         `${API_BASE_URL & { PROD }}/create`,
         registsData,
         {
           headers: {
-            'Content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         },
       );

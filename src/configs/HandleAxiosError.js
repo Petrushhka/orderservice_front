@@ -1,4 +1,10 @@
 export const handleAxiosError = (error, onLogout, navigate) => {
+  if (!error.response) {
+    console.error('네트워크 오류 또는 서버 응답 없음:', error);
+    alert('서버와의 연결에 실패했습니다. 인터넷 연결을 확인해주세요.');
+    return;
+  }
+
   if (error.response.data?.statusMessage === 'EXPIRED_RT') {
     alert('시간이 경과하여 재 로그인이 필요합니다.');
     onLogout();

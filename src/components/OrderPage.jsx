@@ -15,7 +15,7 @@ import React, { useContext } from 'react';
 import CartContext from '../context/CartContext';
 import axios from 'axios';
 import axiosInstance from '../configs/axios-config';
-import { handleAxiosError } from '../configs/HandleAxiosError';
+import { handleAxiosError } from '../configs/handleAxiosError';
 import { API_BASE_URL, ORDER } from '../configs/host-config';
 
 const OrderPage = () => {
