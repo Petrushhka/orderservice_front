@@ -36,7 +36,7 @@ const Header = () => {
                   <Button color='inherit' component={Link} to='/member/list'>
                     회원관리
                   </Button>
-                  <Button color='inherit' component={Link} to='/pruduct/manage'>
+                  <Button color='inherit' component={Link} to='/product/manage'>
                     상품관리
                   </Button>
                   <Button color='inherit' href='/order/list'>
