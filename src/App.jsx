@@ -12,6 +12,7 @@ import { CartContextProvider } from './context/CartContext';
 import OrderPage from './components/OrderPage';
 import MyPage from './components/Mypage';
 import ProductCreate from './components/ProductCreate';
+import AppRouter from './router/AppRouter';
 const App = () => {
   return (
     <AuthContextProvider>
@@ -19,15 +20,7 @@ const App = () => {
         <div className='App'>
           <Header />
           <div className='content-wrapper'>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/member/create' element={<MemberCreate />} />
-              <Route path='/login' element={<LoginPage />} />
-              <Route path='/product/list' element={<ProductList />} />
-              <Route path='/order/cart' element={<OrderPage />} />
-              <Route path='/mypage' element={<MyPage />} />
-              <Route path='/product/manage' element={<ProductCreate />} />
-            </Routes>
+            <AppRouter />
           </div>
           <Footer />
         </div>
